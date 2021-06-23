@@ -68,4 +68,8 @@ print(res)
 res = s.reverse(-10)
 print(res)
 
+# Success:
+# Runtime:28 ms, faster than 89.32% of Python3 online submissions.
+# Memory Usage:14.3 MB, less than 42.76% of Python3 online submissions.
+
 # leetcode submit region end(Prohibit modification and deletion)
