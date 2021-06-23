@@ -74,14 +74,11 @@ class Solution:
         if not nums:
             return 0
         i, j = 0, 0
-        val = nums[0]
         while j < len(nums):
-            if val != nums[j]:
-                nums[i] = val
+            if nums[i] != nums[j]:
                 i += 1
-                val = nums[j]
+                nums[i] = nums[j]
             j += 1
-        nums[i] = val
         i += 1
         return i
 
@@ -100,4 +97,4 @@ print(res)
 # Runtime:84 ms, faster than 64.61% of Python3 online submissions.
 # Memory Usage:16.1 MB, less than 30.09% of Python3 online submissions.
 # Takeaway
-# Keep it simple before you optimize.
+# Keep it simple before you optimize. Nested whiles was more efficient, but hard to take care of corner cases.
