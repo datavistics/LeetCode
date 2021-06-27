@@ -75,4 +75,3 @@ for i in range(8):
 # Success:
 # Runtime:40 ms, faster than 97.85% of Python3 online submissions.
 # Memory Usage:15 MB, less than 52.45% of Python3 online submissions.
-# Takeaway

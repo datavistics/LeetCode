@@ -92,3 +92,7 @@ s = Solution()
 nums1 = [1, 2, 3, 0, 0, 0]
 res = s.merge(nums1, m=3, nums2=[2, 5, 6], n=3)
 print(nums1)
+
+# Success:
+# Runtime:76 ms, faster than 5.57% of Python3 online submissions.
+# Memory Usage:14.3 MB, less than 60.20% of Python3 online submissions.
