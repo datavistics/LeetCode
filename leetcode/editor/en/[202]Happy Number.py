@@ -45,9 +45,6 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def isHappy(self, n: int) -> bool:
-        d = set()
-        d.add(n)
-
         def get_square_sum(n):
             square_sum = 0
             div = n
@@ -57,15 +54,17 @@ class Solution:
                     break
                 div, rem = divmod(div, 10)
                 square_sum += rem**2
-            print(n, square_sum)
             return square_sum
+
+        fast = slow = n
         while True:
-            n = get_square_sum(n)
-            if n == 1:
+            slow = get_square_sum(slow)
+            fast = get_square_sum(fast)
+            fast = get_square_sum(fast)
+            if slow == 1 or fast == 1:
                 return True
-            elif n in d:
+            elif slow == fast:
                 return False
-            d.add(n)
 
 
 # leetcode submit region end(Prohibit modification and deletion)
@@ -73,6 +72,10 @@ class Solution:
 s = Solution()
 res = s.isHappy(7)
 print(res)
+
+# Success:
+# Runtime:28 ms, faster than 95.13% of Python3 online submissions.
+# Memory Usage:14.3 MB, less than 46.20% of Python3 online submissions
 
 # Success:
 # Runtime:36 ms, faster than 61.67% of Python3 online submissions.
