@@ -82,25 +82,35 @@ class ListNode:
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
-        d = set()
-        while True:
-            if headA:
-                if headA in d:
-                    return headA
-                d.add(headA)
-                headA = headA.next
+        # while True:
+        #     if headA:
+        #         if headA in d:
+        #             return headA
+        #         d.add(headA)
+        #         headA = headA.next
+        #
+        #     if headB:
+        #         if headB in d:
+        #             return headB
+        #         d.add(headB)
+        #         headB = headB.next
+        #     if not headA and not headB:
+        #         return None
+        pa, pb = headA, headB
+        while pa != pb:
+            pa = headB if not pa else pa.next
+            pb = headA if not pb else pb.next
+        return pa
 
-            if headB:
-                if headB in d:
-                    return headB
-                d.add(headB)
-                headB = headB.next
-            if not headA and not headB:
-                return None
 
         
 # leetcode submit region end(Prohibit modification and deletion)
 
 # Success:
-# Runtime:168 ms, faster than 43.95% of Python3 online submissions.
-# Memory Usage:32 MB, less than 5.06% of Python3 online submissions.
+# Runtime:164 ms, faster than 60.62% of Python3 online submissions.
+# Memory Usage:29.4 MB, less than 77.35% of Python3 online submissions.
+# I took the naive approach. It takes a lot of memory because Im storing each node in the set. I didnt see an obvious way to use the [[Two Pointers]] solution.
+#
+# https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49798/Concise-python-code-with-comments
+#
+# This is a great idea. By concatenating them each list will have the same length, and the same ending. Further they will meet for the first time at the first intersection.
