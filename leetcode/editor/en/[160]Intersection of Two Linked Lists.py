@@ -109,8 +109,3 @@ class Solution:
 # Success:
 # Runtime:164 ms, faster than 60.62% of Python3 online submissions.
 # Memory Usage:29.4 MB, less than 77.35% of Python3 online submissions.
-# I took the naive approach. It takes a lot of memory because Im storing each node in the set. I didnt see an obvious way to use the [[Two Pointers]] solution.
-#
-# https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49798/Concise-python-code-with-comments
-#
-# This is a great idea. By concatenating them each list will have the same length, and the same ending. Further they will meet for the first time at the first intersection.
