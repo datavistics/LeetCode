@@ -11,7 +11,6 @@ function get_text(path) {
 
     try {
         const data = fs.readFileSync(path, 'utf8');
-        //console.log(data);
         return data
     } catch (err) {
         console.error(err);
@@ -27,13 +26,12 @@ let end_split_index = original.indexOf('\n# Success:');
 let code = original.slice(mdSplitIndex,end_split_index);
 let end = original.slice(end_split_index,original.length);
 
-let code_before = "\n# Code\n```py\n";
+let code_before = "\n# Code\n```py";
 let code_after = "```\n";
 let end_cleanup = end.replaceAll("# ", '');
 
 function get_regex(regex, input_str) {
     input_match = [...input_str.matchAll(regex)];
-    //console.log(input_match);
     return input_match[0][1];
 }
 
@@ -54,6 +52,12 @@ const runtime_re = /Runtime:(\d+ ms)/g
 const faster_re = /faster than ([^ ]+)/g
 const memory_re = /Memory Usage:(.+?),/g
 const less_re = /less than ([^ ]+)/g
+const time_re = /Time:: (.+)/g
+try{
+    var total_time = get_regex(time_re, end_cleanup);
+}catch(error){
+    var total_time='';
+}
 
 tR += `---\n`;
 tR += `tags: ${tags}\n`
@@ -67,4 +71,5 @@ tR += `Runtime:: ${get_regex(runtime_re, end_cleanup)}\n`;
 tR += `Runtime Faster Than:: ${get_regex(faster_re, end_cleanup)}\n`;
 tR += `Memory:: ${get_regex(memory_re, end_cleanup)}\n`;
 tR += `Memory Less Than:: ${get_regex(less_re, end_cleanup)}\n`;
+tR += total_time ? `Time:: ${total_time}\n` : '';
 tR += `# Notes\n`;
