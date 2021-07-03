@@ -36,15 +36,15 @@ class Solution:
     def mySqrt(self, x: int) -> int:
         if x < 2:
             return x
-        window = [0, x]
+        lo, hi = 0, x
         while True:
-            mid = (window[1] - window[0]) // 2 + window[0]
+            mid = (hi + lo) // 2
             if x < mid ** 2:
-                window[1] = mid
+                hi = mid
             else:
-                window[0] = mid
-            if window[1] - window[0] == 1:
-                return window[0]
+                lo = mid
+            if hi - lo == 1:
+                return lo
 
 
 # leetcode submit region end(Prohibit modification and deletion)
