@@ -52,15 +52,14 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        l, r = 0, n
-        while True:
-            mid = (l+r) // 2
+        l, r = 1, n
+        while l < r:
+            mid = l + (r-l) // 2
             if isBadVersion(mid):
                 r = mid
             else:
-                l = mid
-            if r-l == 1:
-                return r
+                l = mid + 1
+        return r
 
 # leetcode submit region end(Prohibit modification and deletion)
 
@@ -70,5 +69,5 @@ s = Solution()
 res = s.firstBadVersion(5)
 
 # Success:
-# Runtime:32 ms, faster than 50.90% of Python3 online submissions.
-# Memory Usage:14.1 MB, less than 89.51% of Python3 online submissions.
+# Runtime:28 ms, faster than 79.61% of Python3 online submissions.
+# Memory Usage:14.3 MB, less than 42.44% of Python3 online submissions
