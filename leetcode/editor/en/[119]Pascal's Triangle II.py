@@ -29,17 +29,26 @@
 #  👍 1484 👎 229
 
 from typing import List
+
+
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
-        def factorial(n):
-            out = 1
-            for i in range(n):
-                out*= i+1
-            return out
-        def ncr(n, r):
-            return factorial(n)//(factorial(r)* factorial(n-r))
-        return [ncr(rowIndex,r) for r in range(rowIndex + 1)]
+        # def factorial(n):
+        #     out = 1
+        #     for i in range(n):
+        #         out *= i + 1
+        #     return out
+        #
+        # def ncr(n, r):
+        #     return factorial(n) // (factorial(r) * factorial(n - r))
+        #
+        # return [ncr(rowIndex, r) for r in range(rowIndex + 1)]
+        row = [1]
+        for _ in range(rowIndex):
+            row = [i + j for i,j in zip([0] + row, row + [0])]
+        return row
+
 
 # leetcode submit region end(Prohibit modification and deletion)
 s = Solution()
@@ -50,3 +59,7 @@ print(res)
 # Runtime:32 ms, faster than 63.37% of Python3 online submissions.
 # Memory Usage:14.1 MB, less than 91.98% of Python3 online submissions.
 # Time:: 00:10:23
+
+# Success:
+# Runtime:24 ms, faster than 96.43% of Python3 online submissions.
+# Memory Usage:14.1 MB, less than 77.53% of Python3 online submissions.
