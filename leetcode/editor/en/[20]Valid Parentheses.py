@@ -54,9 +54,30 @@
 #  Related Topics String Stack 
 #  👍 7998 👎 327
 
-
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def isValid(self, s: str) -> bool:
-        
+        stack = []
+        for c in s[::-1]:
+            # Check for opening or closing
+            if c in ')]}':
+                stack.append(c)
+            else:
+                if stack:
+                    comp = stack.pop()
+                    # Out of order
+                    if abs(ord(comp) - ord(c)) > 2:
+                        return False
+                else:
+                    # Unbalanced scenario (more opening)
+                    return False
+
+        # Unbalanced scenario (more closing)
+        return not bool(stack)
+
 # leetcode submit region end(Prohibit modification and deletion)
+
+# Success:
+# Runtime:24 ms, faster than 95.82% of Python3 online submissions.
+# Memory Usage:14.5 MB, less than 6.68% of Python3 online submissions.
+# Time:: 00:09:20
