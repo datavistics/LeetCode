@@ -73,4 +73,5 @@ print(res)
 # Success:
 # Runtime:88 ms, faster than 58.68% of Python3 online submissions.
 # Memory Usage:20.9 MB, less than 35.25% of Python3 online submissions.
+# Time:: 00:05:47
 
