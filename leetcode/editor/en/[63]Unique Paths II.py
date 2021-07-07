@@ -48,15 +48,15 @@ from typing import List
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         r,c = len(obstacleGrid), len(obstacleGrid[0])
-        obstacleGrid[0][0] = 1 - obstacleGrid[0][0]
+        obstacleGrid[0][0] = not obstacleGrid[0][0]
         for i in range(1,r):
-                obstacleGrid[i][0] = obstacleGrid[i-1][0] * (1 - obstacleGrid[i][0])
+                obstacleGrid[i][0] = obstacleGrid[i-1][0] * (not obstacleGrid[i][0])
         for j in range(1,c):
-            obstacleGrid[0][j] = obstacleGrid[0][j-1] * (1 - obstacleGrid[0][j])
+            obstacleGrid[0][j] = obstacleGrid[0][j-1] * (not obstacleGrid[0][j])
         for i in range(1, r):
             for j in range(1, c):
-                obstacleGrid[i][j] = (obstacleGrid[i][j - 1] + obstacleGrid[i - 1][j]) * (1 - obstacleGrid[i][j])
-        return obstacleGrid[-1][-1]
+                obstacleGrid[i][j] = (obstacleGrid[i][j - 1] + obstacleGrid[i - 1][j]) * (not obstacleGrid[i][j])
+        return int(obstacleGrid[-1][-1])
 
 
 # leetcode submit region end(Prohibit modification and deletion)
@@ -69,3 +69,7 @@ print(res)
 # Success:
 # Runtime:80 ms, faster than 5.38% of Python3 online submissions.
 # Memory Usage:14.3 MB, less than 81.71% of Python3 online submissions.
+
+# Success:
+# Runtime:48 ms, faster than 23.01% of Python3 online submissions.
+# Memory Usage:14.4 MB, less than 58.68% of Python3 online submissions
