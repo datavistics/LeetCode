@@ -55,26 +55,25 @@ class Solution:
         left = 0
         longest = 0
         for right, letter in enumerate(s):
-            if letter in d:
-                found_dup = d[letter]
-                d[letter] = right
-                while left <= found_dup:
-                    del d[s[left]]
-                    left += 1
+            if letter in d and left <= d[letter]:
+                # This is for when there are repeats that are adjacent
+                left = d[letter] + 1
                     # print(s[left:right])
             d[letter] = right
             # print(s[left:right])
-            longest = max(longest, right - left)
+            if longest < right - left:
+                longest = right - left
         return longest + 1
 
 
 # leetcode submit region end(Prohibit modification and deletion)
 
-s = Solution.lengthOfLongestSubstring(None, "bbbbbb")
+# s = Solution.lengthOfLongestSubstring(None, "bbbbbb")
+s = Solution.lengthOfLongestSubstring(None, "abba")
 # s = Solution.lengthOfLongestSubstring(None, "abcabcbb")
 # s = Solution.lengthOfLongestSubstring(None, "nfpdmpi")
 print(s)
 
 # Success:
-# Runtime: 68 ms, faster than 56.51% of Python3 online submissions.
-# Memory Usage: 14.2 MB, less than 79.09% of Python3 online submissions.
+# Runtime: 44 ms, faster than 98.82% of Python3 online submissions.
+# Memory Usage: 14.1 MB, less than 98.92% of Python3 online submissions.
